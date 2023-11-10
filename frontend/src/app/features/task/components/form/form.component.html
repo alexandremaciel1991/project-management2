@@ -1,0 +1,57 @@
+<div class="container flex">
+  <h1 class="center">Projeto</h1>
+</div>
+<div class="container flex">
+  <form [formGroup]="formTask">
+    <div class="form-flex">
+      <mat-form-field>
+        <mat-label>Nome do Projeto</mat-label>
+        <input matInput type="text" formControlName="name" />
+        <mat-error>Campo obrigatorio!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>Campo obrigatorio!</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Projetos</mat-label>
+        <mat-select formControlName="projectId">
+          <mat-option *ngFor="let item of projects" value="{{ item.id }}">
+            {{ item.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width">
+        <mat-label>Descrição</mat-label>
+        <textarea
+          matInput
+          placeholder="Descrição do Projeto"
+          formControlName="description"
+        ></textarea>
+        <mat-error>Campo obrigatorio!</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="button-align">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!formTask.valid"
+      (click)="saveForm()"
+    >
+      Salvar
+    </button>
+  </div>
+</div>

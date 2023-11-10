@@ -1,0 +1,23 @@
+<div mat-dialog-title>
+  <div>{{ data.name }}</div>
+  <div class="subtitle">
+    {{ data.date | date : "dd/MM/YYYY, hh:mm" }}
+  </div>
+  <div class="subtitle" *ngIf="data.status">Status: Concluido</div>
+  <div class="subtitle" *ngIf="!data.status">Status: Pendente</div>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <p>{{ data.description }}</p>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button
+    mat-button
+    (click)="updateStatus()"
+    color="primary"
+    *ngIf="!data.status"
+  >
+    Marcar como concluido
+  </button>
+</div>

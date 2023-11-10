@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <span>Meus Projetos</span>
+  <span class="example-spacer"></span>
+  <div class="menu-item" *ngFor="let m of menu">
+    <a [routerLink]="m.route" routerLinkActive="active">{{ m.description }}</a>
+  </div>
+  <div class="menu-item">
+    <a (click)="logout()"> Sair</a>
+  </div>
+</mat-toolbar>

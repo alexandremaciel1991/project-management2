@@ -1,0 +1,13 @@
+mat-list-item {
+  box-shadow: 0px 0px 1px black;
+  cursor: pointer !important;
+  h3 {
+    font-weight: 500;
+  }
+}
+.concluded {
+  color: green;
+}
+.pending {
+  color: red;
+}

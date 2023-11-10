@@ -1,0 +1,12 @@
+<mat-list>
+  <mat-list-item *ngFor="let t of tasks" (click)="showInfo(t)">
+    <h3 matListItemTitle [ngClass]="t.status ? 'concluded' : 'pending'">
+      {{ t.name }}
+    </h3>
+    <button mat-icon-button matListItemMeta><mat-icon> info</mat-icon></button>
+    <p matListItemLine>
+      <span>{{ t.date | date : "dd/MM/YYYY, hh:mm" }}</span>
+    </p>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

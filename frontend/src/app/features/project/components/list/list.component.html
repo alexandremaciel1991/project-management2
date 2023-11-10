@@ -1,0 +1,55 @@
+<div class="container button-flex">
+  <button mat-raised-button color="primary" (click)="newProject()">
+    Novo Projeto
+  </button>
+  <button mat-raised-button color="accent" (click)="newTask()">
+    Nova Tarefa
+  </button>
+</div>
+
+<div class="container" *ngIf="projects.length > 0">
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngFor="let item of projects; index as i"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ item.name }} </mat-panel-title>
+        <mat-panel-description>
+          {{ item.date | date : "dd/MM/YYYY, hh:mm" }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="expansion-header">
+        <p>
+          {{ item.description }}
+        </p>
+        <div class="action-buttons">
+          <button mat-button color="danger" (click)="editRedirect(item)">
+            <mat-icon style="color: rgb(255, 81, 0); cursor: pointer"
+              >edit</mat-icon
+            >
+          </button>
+          <button
+            mat-button
+            color="danger"
+            *ngIf="item.id"
+            (click)="deleteProject(item.id)"
+          >
+            <mat-icon style="color: rgb(255, 81, 0); cursor: pointer"
+              >delete</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+
+      <div class="expansion-body" *ngIf="item.tasks">
+        <app-list-tasks [tasks]="item.tasks"></app-list-tasks>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<div class="container text-center" *ngIf="projects.length === 0">
+  <h1>Nenhum projeto encontrado</h1>
+</div>
